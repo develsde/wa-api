@@ -1,5 +1,6 @@
 import whatsappWeb from 'whatsapp-web.js'
 import axios from 'axios'
+import { setClientQrcode } from '../stores/client-qrcode.js'
 
 const { Client, LocalAuth } = whatsappWeb
 
@@ -14,8 +15,14 @@ export function initWhatsappEngine (clientId) {
   })
 
   client.on('qr', qr => {
-    console.log('qr', qr)
-    global.qrcode[clientId] = qr
+    setClientQrcode(clientId, qr)
+  })
+
+  client.on('disconnected', async reason => {
+    console.log('disconnected', reason, clientId)
+    await client.destroy()
+    delete global.clients[clientId]
+    console.log('global.clients', global.clients)
   })
 
   client.on('ready', () => {
