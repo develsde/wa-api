@@ -13,7 +13,7 @@ export async function sendMessage ({ body: { phone, message, groupId, clientId, 
     }
 
     const responseMessage = await client.sendMessage(wid, message, options)
-
+ 
     res.send(responseMessage)
   } catch (error) {
     handleErrorResponse(res, error)
