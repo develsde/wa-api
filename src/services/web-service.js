@@ -11,7 +11,7 @@ export function initWebService () {
   app.use(express.urlencoded({ limit: '50mb', extended: true }))
   app.use([logging, auth])
 
-  const port = process.env.PORT
+  const port = 3035
 
   app.get('/', (req, res) => {
     res.send('Whatsapp API')
@@ -30,6 +30,6 @@ export function initWebService () {
   })
 
   app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Berjalan Pada Port ${port}`)
   })
 }

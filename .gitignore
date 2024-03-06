@@ -1,5 +1,3 @@
 .wwebjs_*
 chrome
 node_modules
-
-.env
